@@ -13,7 +13,6 @@ import java.util.Map;
 
 
 @RestController
-@CrossOrigin(maxAge = 3600)
 public class UserController {
 
     @Autowired
@@ -21,7 +20,6 @@ public class UserController {
 
 
     @PostMapping("/login")
-    @CrossOrigin(origins = "*")
     public Map<String, Object> login(String studentId, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<>();
         Map<String, Object> loginMap = userService.login(studentId);
