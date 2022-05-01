@@ -13,6 +13,7 @@ import java.util.Map;
 
 
 @RestController
+@CrossOrigin(maxAge = 3600)
 public class UserController {
 
     @Autowired
