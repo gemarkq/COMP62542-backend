@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin(origins = "*")
 @RestController
-@CrossOrigin
 public class UserController {
 
     @Autowired
     UserService userService;
+
 
     @PostMapping("/login")
     public Map<String, Object> login(String studentId, HttpServletResponse response) {
