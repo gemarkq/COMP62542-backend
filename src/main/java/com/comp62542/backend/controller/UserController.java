@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin(origins = "*")
+
 @RestController
 public class UserController {
 
@@ -20,6 +20,7 @@ public class UserController {
 
 
     @PostMapping("/login")
+    @CrossOrigin(origins = "*")
     public Map<String, Object> login(String studentId, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<>();
         Map<String, Object> loginMap = userService.login(studentId);
