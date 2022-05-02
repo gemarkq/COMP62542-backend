@@ -29,8 +29,8 @@ public class UserController {
             map.put("status", loginMap.get("status"));
         }
         map.put("user", loginMap.get("user"));
-        if(loginMap.containsKey("token")) {
-            response.addHeader("token", (String) loginMap.get("token"));
+        if (loginMap.containsKey("token")) {
+            map.put("token", loginMap.get("token"));
         }
         return map;
     }
