@@ -13,7 +13,6 @@ import java.util.Map;
 
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
 
     @Autowired
@@ -30,9 +29,9 @@ public class UserController {
             map.put("status", loginMap.get("status"));
         }
         map.put("user", loginMap.get("user"));
-//        if(loginMap.containsKey("token")) {
-//            response.addHeader("token", (String) loginMap.get("token"));
-//        }
+        if(loginMap.containsKey("token")) {
+            response.addHeader("token", (String) loginMap.get("token"));
+        }
         return map;
     }
 
