@@ -28,7 +28,7 @@ public class ActivityController {
         System.out.println("user" + user);
         if(user != null) {
             String studentId = user.getStudentID();
-            Map<String, Object> map = activityServices.activity(studentId);
+            Map<String, Object> mapg = activityServices.activity(studentId);
             if(map.containsKey("data")) {
                 map.put("status", 1);
             }else {
