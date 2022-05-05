@@ -19,7 +19,7 @@ public class UserController {
     UserService userService;
 
 
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     public Map<String, Object> login(String studentId, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<>();
         Map<String, Object> loginMap = userService.login(studentId);
