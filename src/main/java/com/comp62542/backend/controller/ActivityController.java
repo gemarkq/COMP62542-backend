@@ -23,12 +23,12 @@ public class ActivityController {
 
     @GetMapping("/activities")
     public Map<String, Object> getActivityData() {
-        Map<String, Object> map = new HashMap<>();
+
         User user = hostHolder.getUser();
         System.out.println("user" + user);
         if(user != null) {
             String studentId = user.getStudentID();
-            Map<String, Object> mapg = activityServices.activity(studentId);
+            Map<String, Object> map= activityServices.activity(studentId);
             if(map.containsKey("data")) {
                 map.put("status", 1);
             }else {
@@ -37,6 +37,7 @@ public class ActivityController {
             }
             return map;
         }else {
+            Map<String, Object> map = new HashMap<>();
             map.put("status", 0);
             map.put("data", null);
             return map;
