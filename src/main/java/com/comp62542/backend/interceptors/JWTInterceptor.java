@@ -33,13 +33,9 @@ public class JWTInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Map<String, Object> map = new HashMap<>();
         String token = request.getHeader("Authorization");
-        System.out.println("token " + token);
         try {
             DecodedJWT verify =  JWTUtils.verify(token);
-            System.out.println("************************");
-            System.out.println("verify " + verify);
             String studentId = verify.getClaim("studentId").asString();
-            System.out.println(studentId);
             User user = userService.findUserByStudentID(studentId);
             if(user != null) {
                 hostHolder.setUsers(user);

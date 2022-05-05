@@ -25,7 +25,7 @@ public class ActivityController {
     public Map<String, Object> getActivityData() {
 
         User user = hostHolder.getUser();
-        System.out.println("user" + user);
+//        System.out.println("user" + user);
         if(user != null) {
             String studentId = user.getStudentID();
             Map<String, Object> map= activityServices.activity(studentId);
