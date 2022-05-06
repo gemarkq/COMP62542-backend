@@ -62,4 +62,9 @@ public class MapperTest {
         System.out.println(courseMapper.selectAllCourse());
     }
 
+    @Test
+    public void testInsertCourse() {
+        System.out.println(courseMapper.insertCourse("COMP62542", "10872364"));
+    }
+
 }

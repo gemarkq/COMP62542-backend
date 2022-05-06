@@ -11,6 +11,7 @@ import com.comp62542.backend.util.HostHolder;
 import com.comp62542.backend.util.JWTUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.rmi.rmid.ExecOptionPermission;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class JWTInterceptor implements HandlerInterceptor {
 
     @Autowired
@@ -37,6 +39,7 @@ public class JWTInterceptor implements HandlerInterceptor {
             DecodedJWT verify =  JWTUtils.verify(token);
             String studentId = verify.getClaim("studentId").asString();
             User user = userService.findUserByStudentID(studentId);
+            System.out.println("jwtuser: " + user);
             if(user != null) {
                 hostHolder.setUsers(user);
                 return true;

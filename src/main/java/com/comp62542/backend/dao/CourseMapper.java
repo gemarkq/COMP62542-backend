@@ -2,9 +2,7 @@ package com.comp62542.backend.dao;
 
 
 import com.comp62542.backend.entity.Course;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -16,4 +14,11 @@ public interface CourseMapper {
     })
     @ResultType(Course.class)
     List<Course> selectAllCourse();
+
+
+    @Insert({
+            "insert into course_enrollment(courseId, studentId) values(#{courseId}, #{studentId}) "
+    })
+    @Options(useGeneratedKeys = true, keyColumn = "id")
+    int insertCourse(@Param("courseId")String courseId, @Param("studentId")String studentId);
 }
