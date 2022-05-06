@@ -34,4 +34,22 @@ public class MapperTest {
         System.out.println(activity);
     }
 
+    @Test
+    public void testSelectActivityByName() {
+        Activity activity = activityMapper.selectByActivityName("Meeting with supervisor");
+        System.out.println(activity);
+    }
+
+    @Test
+    public void testInsertActivity() {
+        Activity activity = new Activity();
+        activity.setActivityId("102");
+        activity.setActivityName("test Activity");
+        activity.setType("tutorial");
+        activity.setTime("3-1300-1400");
+        activity.setStudentId("10872364");
+        System.out.println(activityMapper.insertActivity(activity));
+
+    }
+
 }

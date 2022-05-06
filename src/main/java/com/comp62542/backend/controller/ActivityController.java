@@ -7,6 +7,7 @@ import com.comp62542.backend.util.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -23,7 +24,6 @@ public class ActivityController {
 
     @GetMapping("/activities")
     public Map<String, Object> getActivityData() {
-
         User user = hostHolder.getUser();
 //        System.out.println("user" + user);
         if(user != null) {
@@ -42,9 +42,20 @@ public class ActivityController {
             map.put("data", null);
             return map;
         }
-
     }
 
+    @PostMapping("/activities")
+    public Map<String, Object> addActivity(String type, String time, String activityName) {
+        User user = hostHolder.getUser();
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", type);
+        map.put("time", time);
+        map.put("activityName", activityName);
+        map.put("user", user);
+
+        Map<String, Object> responseData = activityServices.addActivity(map);
+        return responseData;
+    }
 
 
 }

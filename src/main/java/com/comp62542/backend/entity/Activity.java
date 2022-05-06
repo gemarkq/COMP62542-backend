@@ -2,8 +2,8 @@ package com.comp62542.backend.entity;
 
 public class Activity {
     private int id;
-    private String activityId;
-    private String studentId;
+    private String activityID;
+    private String studentID;
     private String activityName;
     private String type; // tutorial or meeting
     private String time;
@@ -17,19 +17,19 @@ public class Activity {
     }
 
     public String getActivityId() {
-        return activityId;
+        return activityID;
     }
 
     public void setActivityId(String activityId) {
-        this.activityId = activityId;
+        this.activityID = activityId;
     }
 
     public String getStudentId() {
-        return studentId;
+        return studentID;
     }
 
     public void setStudentId(String studentId) {
-        this.studentId = studentId;
+        this.studentID = studentId;
     }
 
     public String getActivityName() {
@@ -60,8 +60,8 @@ public class Activity {
     public String toString() {
         return "Activity{" +
                 "id=" + id +
-                ", activityId='" + activityId + '\'' +
-                ", studentId='" + studentId + '\'' +
+                ", activityId='" + activityID + '\'' +
+                ", studentId='" + studentID + '\'' +
                 ", activityName='" + activityName + '\'' +
                 ", type='" + type + '\'' +
                 ", time='" + time + '\'' +

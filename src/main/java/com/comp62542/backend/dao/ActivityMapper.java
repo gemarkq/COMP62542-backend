@@ -1,9 +1,7 @@
 package com.comp62542.backend.dao;
 
 import com.comp62542.backend.entity.Activity;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -32,5 +30,15 @@ public interface ActivityMapper {
     @ResultType(Activity.class)
     List<Activity> selectByStudentId(String studentID);
 
+    @Select({
+            "select id, activityID, studentID, activityName, type, time from activities where activityName=#{activityName} limit 1"
+    })
+    Activity selectByActivityName(String activityName);
+
+    @Insert({
+            "insert into activities (studentID, activityName, type, time, activityID) values(#{studentID}, #{activityName}, #{type}, #{time}, #{activityID})"
+    })
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int insertActivity(Activity activity);
 
 }
