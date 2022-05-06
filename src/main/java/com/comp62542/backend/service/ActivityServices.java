@@ -65,7 +65,7 @@ public class ActivityServices {
      * @return map: status 1/0 and message
      */
 
-    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+//    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public Map<String, Object> addActivity(Map<String, Object> data) {
         Map<String, Object> map = new HashMap<>();
 
