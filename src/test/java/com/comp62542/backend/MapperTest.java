@@ -1,6 +1,7 @@
 package com.comp62542.backend;
 
 import com.comp62542.backend.dao.ActivityMapper;
+import com.comp62542.backend.dao.CourseMapper;
 import com.comp62542.backend.entity.Activity;
 import com.comp62542.backend.util.CommonUtils;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,9 @@ public class MapperTest {
 
     @Autowired
     private ActivityMapper activityMapper;
+
+    @Autowired
+    private CourseMapper courseMapper;
 
     @Test
     public void testSelectActivityByStudentId() {
@@ -51,6 +55,11 @@ public class MapperTest {
         activity.setStudentId("10872364");
         System.out.println(activityMapper.insertActivity(activity));
 
+    }
+
+    @Test
+    public void testSelectAllCourse() {
+        System.out.println(courseMapper.selectAllCourse());
     }
 
 }

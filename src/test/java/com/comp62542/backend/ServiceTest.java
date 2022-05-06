@@ -3,6 +3,7 @@ package com.comp62542.backend;
 
 import com.comp62542.backend.entity.User;
 import com.comp62542.backend.service.ActivityServices;
+import com.comp62542.backend.service.CourseService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,9 @@ public class ServiceTest {
 
     @Autowired
     private ActivityServices activityServices;
+
+    @Autowired
+    private CourseService courseService;
 
     @Test
     public void testActivity() {
@@ -36,4 +40,10 @@ public class ServiceTest {
         activityServices.addActivity(map);
         System.out.println("ok");
     }
+
+    @Test
+    public void testAllCourses() {
+        System.out.println(courseService.getAllCourses());
+    }
+
 }
