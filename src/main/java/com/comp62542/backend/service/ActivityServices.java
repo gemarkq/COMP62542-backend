@@ -2,7 +2,9 @@ package com.comp62542.backend.service;
 
 
 import com.comp62542.backend.dao.ActivityMapper;
+import com.comp62542.backend.dao.CourseMapper;
 import com.comp62542.backend.entity.Activity;
+import com.comp62542.backend.entity.Course;
 import com.comp62542.backend.entity.User;
 import com.comp62542.backend.util.CommonUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +26,9 @@ public class ActivityServices {
     @Autowired
     private ActivityMapper activityMapper;
 
+    @Autowired
+    private CourseMapper courseMapper;
+
     public List<Activity> findActivitiesByStudentID(String studentID) {
         return activityMapper.selectByStudentId(studentID);
     }
@@ -40,6 +45,11 @@ public class ActivityServices {
         return activityMapper.selectByActivityName(name);
     }
 
+    /**
+     * get all Selected courses and activites
+     * @param StudentID
+     * @return
+     */
     public Map<String, Object> activity(String StudentID) {
         List<Activity> activities = activityMapper.selectByStudentId(StudentID);
         Map<String, Object> map = new HashMap<>();
@@ -47,6 +57,7 @@ public class ActivityServices {
             map.put("msg", "No Activities");
             return map;
         }
+        // activiteis
         List<Map<String, Object>> datalist = new ArrayList<>();
         for (Activity activity : activities) {
             Map<String, Object> data = new HashMap<>();
@@ -55,6 +66,17 @@ public class ActivityServices {
             data.put("time", activity.getTime());
             datalist.add(data);
         }
+
+        // courses
+        List<Course> courseList = courseMapper.selectCoursesByStudentId(StudentID);
+        for (Course course : courseList) {
+            Map<String, Object> data = new HashMap<>();
+            data.put("activityName", course.getCourseName());
+            data.put("type", course.getType());
+            data.put("time", course.getTime());
+            datalist.add(data);
+        }
+
         map.put("data", datalist);
         return map;
     }

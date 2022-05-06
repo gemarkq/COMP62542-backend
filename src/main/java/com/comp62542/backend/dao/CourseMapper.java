@@ -15,6 +15,14 @@ public interface CourseMapper {
     @ResultType(Course.class)
     List<Course> selectAllCourse();
 
+    @Select({
+            "select courses.id, courses.courseId, courseName, type, time, department, teacher " +
+                    "from courses inner join course_enrollment ce on courses.courseId = ce.courseId " +
+                    "where ce.studentId=#{studentId}"
+    })
+    @ResultType(Course.class)
+    List<Course> selectCoursesByStudentId(@Param("studentId")String studentId);
+
 
     @Insert({
             "insert into course_enrollment(courseId, studentId) values(#{courseId}, #{studentId}) "
