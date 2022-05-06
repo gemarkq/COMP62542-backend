@@ -36,29 +36,12 @@ public class ActivityServices {
             map.put("msg", "No Activities");
             return map;
         }
-        Map<String, String> activitiesType = new HashMap<>();
-        Map<String, List<String>> activitiesTime = new HashMap<>();
-        for(Activity activity : activities) {
-            String name = activity.getActivityName();
-            if(!activitiesType.containsKey(name)) {
-                activitiesType.put(name, activity.getType());
-            }
-            if(!activitiesTime.containsKey(name)) {
-                List<String> times = new ArrayList<>();
-                times.add(activity.getTime());
-                activitiesTime.put(name, times);
-            }else {
-                List<String> times = activitiesTime.get(name);
-                times.add(activity.getTime());
-                activitiesTime.put(name, times);
-            }
-        }
         List<Map<String, Object>> datalist = new ArrayList<>();
-        for(String name : activitiesType.keySet()) {
+        for (Activity activity : activities) {
             Map<String, Object> data = new HashMap<>();
-            data.put("activityName", name);
-            data.put("type", activitiesType.get(name));
-            data.put("time", activitiesTime.get(name));
+            data.put("activityName", activity.getActivityName());
+            data.put("type", activity.getType());
+            data.put("time", activity.getTime());
             datalist.add(data);
         }
         map.put("data", datalist);
