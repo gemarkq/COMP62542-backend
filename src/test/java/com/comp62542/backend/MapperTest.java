@@ -2,6 +2,7 @@ package com.comp62542.backend;
 
 import com.comp62542.backend.dao.ActivityMapper;
 import com.comp62542.backend.entity.Activity;
+import com.comp62542.backend.util.CommonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,8 +44,8 @@ public class MapperTest {
     @Test
     public void testInsertActivity() {
         Activity activity = new Activity();
-        activity.setActivityId("102");
-        activity.setActivityName("test Activity");
+        activity.setActivityId(CommonUtils.generateUUID());
+        activity.setActivityName("test");
         activity.setType("tutorial");
         activity.setTime("3-1300-1400");
         activity.setStudentId("10872364");
