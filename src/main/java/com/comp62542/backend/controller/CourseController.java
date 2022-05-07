@@ -5,6 +5,7 @@ import com.comp62542.backend.entity.User;
 import com.comp62542.backend.service.CourseService;
 import com.comp62542.backend.util.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,14 @@ public class CourseController {
             return map;
         }
         Map<String, Object> map = courseService.addOptCourses(user.getStudentID(), courseId);
+        return map;
+    }
+
+    @DeleteMapping("/optcourses")
+    public Map<String, Object> deleteCourses(String courseId) {
+        User user = hostHolder.getUser();
+        String studentId = user.getStudentID();
+        Map<String, Object> map = courseService.deleteOptCourse(studentId, courseId);
         return map;
     }
 

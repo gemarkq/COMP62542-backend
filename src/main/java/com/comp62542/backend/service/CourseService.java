@@ -64,4 +64,29 @@ public class CourseService {
         return map;
     }
 
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+    public Map<String, Object> deleteOptCourse(String studentId, String courseId) {
+        Map<String, Object> map = new HashMap<>();
+        if (StringUtils.isBlank(studentId)) {
+            map.put("status", 0);
+            map.put("message", "user is null");
+            return map;
+        }
+        if (StringUtils.isBlank(courseId)) {
+            map.put("status", 0);
+            map.put("message", "courseId is null");
+            return map;
+        }
+        int t = courseMapper.deleteCourseEnrollByStudentIdAndCourseId(studentId, courseId);
+        if(t > 0) {
+            map.put("status", 1);
+            map.put("message", "delete courses successfully");
+        }else {
+            map.put("status", 0);
+            map.put("message", "You don't choose this course");
+        }
+        return map;
+    }
+
+
 }

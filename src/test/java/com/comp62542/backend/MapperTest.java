@@ -2,6 +2,7 @@ package com.comp62542.backend;
 
 import com.comp62542.backend.dao.ActivityMapper;
 import com.comp62542.backend.dao.CourseMapper;
+import com.comp62542.backend.dao.NewsletterMapper;
 import com.comp62542.backend.entity.Activity;
 import com.comp62542.backend.util.CommonUtils;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,9 @@ public class MapperTest {
 
     @Autowired
     private CourseMapper courseMapper;
+
+    @Autowired
+    private NewsletterMapper newsletterMapper;
 
     @Test
     public void testSelectActivityByStudentId() {
@@ -75,6 +79,16 @@ public class MapperTest {
     @Test
     public void testSelectCourseByStudentIdAndCourseId() {
         System.out.println(courseMapper.selectCourseByStudentIdAndCourseId("10872364", "COMP62542"));
+    }
+
+    @Test
+    public void testDeleteCourseEnrollBySIDandCID() {
+        System.out.println(courseMapper.deleteCourseEnrollByStudentIdAndCourseId("10872364", "COMP62542"));
+    }
+
+    @Test
+    public void testSelectAllNewsletter() {
+        System.out.println(newsletterMapper.selectAllNewsletter());
     }
 
 }

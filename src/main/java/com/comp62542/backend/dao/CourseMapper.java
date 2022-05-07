@@ -36,4 +36,9 @@ public interface CourseMapper {
     })
     @Options(useGeneratedKeys = true, keyColumn = "id")
     int insertCourse(@Param("courseId")String courseId, @Param("studentId")String studentId);
+
+    @Delete({
+            "delete from course_enrollment where studentId=#{studentId} and courseId=#{courseId}"
+    })
+    int deleteCourseEnrollByStudentIdAndCourseId(String studentId, String courseId);
 }
