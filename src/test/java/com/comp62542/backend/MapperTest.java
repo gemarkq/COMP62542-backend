@@ -91,4 +91,9 @@ public class MapperTest {
         System.out.println(newsletterMapper.selectAllNewsletter());
     }
 
+    @Test
+    public void testInsertNewsletter() {
+        System.out.println(newsletterMapper.insertNewsletter("10872364", "1"));
+    }
+
 }

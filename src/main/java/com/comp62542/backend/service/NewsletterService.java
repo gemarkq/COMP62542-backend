@@ -2,6 +2,7 @@ package com.comp62542.backend.service;
 
 import com.comp62542.backend.dao.NewsletterMapper;
 import com.comp62542.backend.entity.Newsletter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,31 @@ public class NewsletterService {
         }
         map.put("data", datalists);
         return map;
+    }
+
+    public Map<String, Object> subscribeNewsletter(String studentId, String newsletterId) {
+        Map<String, Object> map = new HashMap<>();
+        if (StringUtils.isBlank(studentId)) {
+            map.put("status", 0);
+            map.put("message", "user is null");
+            return map;
+        }
+        if (StringUtils.isBlank(newsletterId)) {
+            map.put("status", 0);
+            map.put("message", "newsletterId is null");
+            return map;
+        }
+        Newsletter newsletter = newsletterMapper.selectNewsletterByStudentIdAndNewsletterId(studentId, newsletterId);
+        if(newsletter != null) {
+            map.put("status", 0);
+            map.put("message", "You have already subscribed this newsletter");
+            return map;
+        }
+        newsletterMapper.insertNewsletter(studentId, newsletterId);
+        map.put("status", 1);
+        map.put("message", "Subscribe newsletter successfully");
+        return map;
+
     }
 
 }
