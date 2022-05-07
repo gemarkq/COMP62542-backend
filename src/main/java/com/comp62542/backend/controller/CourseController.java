@@ -29,6 +29,12 @@ public class CourseController {
     @PostMapping("/optcourses")
     public Map<String, Object> addOptCourses(String courseId) {
         User user = hostHolder.getUser();
+        if (user.getStatus() == 0) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("status", 0);
+            map.put("message", "student is not fully registered");
+            return map;
+        }
         Map<String, Object> map = courseService.addOptCourses(user.getStudentID(), courseId);
         return map;
     }

@@ -51,7 +51,13 @@ public class CourseService {
             map.put("message", "courseId is null");
             return map;
         }
-
+        Course chooseOrNot = courseMapper.selectCourseByStudentIdAndCourseId(studentId, courseId);
+        if (chooseOrNot != null) {
+            map.put("status", 0);
+            map.put("message", "You have already chosen this course");
+            return map;
+        }
+        // 插入课程
         courseMapper.insertCourse(courseId, studentId);
         map.put("status", 1);
         map.put("message", "add Course successfully");

@@ -18,6 +18,13 @@ public interface CourseMapper {
     @Select({
             "select courses.id, courses.courseId, courseName, type, time, department, teacher " +
                     "from courses inner join course_enrollment ce on courses.courseId = ce.courseId " +
+                    "where ce.studentId=#{studentId} and ce.courseId=#{courseId}"
+    })
+    Course selectCourseByStudentIdAndCourseId(String studentId, String courseId);
+
+    @Select({
+            "select courses.id, courses.courseId, courseName, type, time, department, teacher " +
+                    "from courses inner join course_enrollment ce on courses.courseId = ce.courseId " +
                     "where ce.studentId=#{studentId}"
     })
     @ResultType(Course.class)
