@@ -32,7 +32,7 @@ public interface CourseMapper {
     List<Course> selectCoursesByStudentId(@Param("studentId")String studentId);
 
     @Select({
-            "select courseId, studentID from course_enrollment where studentId=#{studentId}"
+            "select courseId, studentId from course_enrollment where studentId=#{studentId}"
     })
     @ResultType(java.util.HashMap.class)
     List<Map<String, Object>> selectByStudentId(String studentId);
