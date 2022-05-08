@@ -39,7 +39,7 @@ public class UserService {
             return map;
         }else {
             map.put("status", 0);
-            map.put("message", "student status is not 0");
+            map.put("message", "student status is fully registered");
             return map;
         }
         map.put("status", 1);

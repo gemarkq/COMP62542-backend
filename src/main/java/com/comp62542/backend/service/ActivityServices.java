@@ -53,10 +53,7 @@ public class ActivityServices {
     public Map<String, Object> activity(String StudentID) {
         List<Activity> activities = activityMapper.selectByStudentId(StudentID);
         Map<String, Object> map = new HashMap<>();
-        if(activities.size() == 0) {
-            map.put("msg", "No Activities");
-            return map;
-        }
+
         // activiteis
         List<Map<String, Object>> datalist = new ArrayList<>();
         for (Activity activity : activities) {
@@ -75,6 +72,11 @@ public class ActivityServices {
             data.put("type", course.getType());
             data.put("time", course.getTime());
             datalist.add(data);
+        }
+
+        if(datalist.size() == 0) {
+            map.put("msg", "No Activities and courses");
+            return map;
         }
 
         map.put("data", datalist);

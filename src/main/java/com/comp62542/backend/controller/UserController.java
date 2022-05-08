@@ -46,6 +46,7 @@ public class UserController {
 
     @PostMapping("/status/update")
     public Map<String, Object> updateStatus(int status) {
+        System.out.println(status);
         User user = hostHolder.getUser();
         Map<String, Object> map = userService.updateStatus(status, user);
         return map;

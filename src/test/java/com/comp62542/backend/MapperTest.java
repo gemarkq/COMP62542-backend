@@ -3,13 +3,16 @@ package com.comp62542.backend;
 import com.comp62542.backend.dao.ActivityMapper;
 import com.comp62542.backend.dao.CourseMapper;
 import com.comp62542.backend.dao.NewsletterMapper;
+import com.comp62542.backend.dao.UserMapper;
 import com.comp62542.backend.entity.Activity;
+import com.comp62542.backend.entity.User;
 import com.comp62542.backend.util.CommonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -24,6 +27,9 @@ public class MapperTest {
 
     @Autowired
     private NewsletterMapper newsletterMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Test
     public void testSelectActivityByStudentId() {
@@ -99,6 +105,14 @@ public class MapperTest {
     @Test
     public void testSelectbystudentId() {
         System.out.println(courseMapper.selectByStudentId("10872364"));
+    }
+
+    @Test
+    public void testSelectUnRegisteredStudent() {
+        User[] users = userMapper.selectUnRegisteredStudent();
+        Arrays.stream(users)
+                .forEach(System.out::println);
+
     }
 
 }

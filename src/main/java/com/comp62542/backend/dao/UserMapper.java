@@ -23,9 +23,16 @@ public interface UserMapper {
     })
     User selectById(int id);
 
+    @Select({
+            "select id, studentID, name, status, type, email from user where status=0"
+    })
+    User[] selectUnRegisteredStudent();
+
     @Update({
             "update user set status=#{status} where studentID=#{studentId}"
     })
     int updateStatus(int status, String studentId);
+
+
 
 }
