@@ -6,11 +6,9 @@ import com.comp62542.backend.service.CourseService;
 import com.comp62542.backend.service.UserService;
 import com.comp62542.backend.util.HostHolder;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -60,5 +58,11 @@ public class UserController {
         return map;
     }
 
+    @DeleteMapping("admin/optcourses")
+    @AdminRequired
+    public Map<String, Object> adminDeleteCourses(String courseId, String studentId) {
+        Map<String, Object> map = courseService.deleteOptCourse(studentId, courseId);
+        return map;
+    }
 
 }
