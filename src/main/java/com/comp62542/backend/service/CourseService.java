@@ -37,6 +37,28 @@ public class CourseService {
         return map;
     }
 
+    public Map<String, Object> findCourseByStudentId(String studentId) {
+        Map<String, Object> map = new HashMap<>();
+        if(StringUtils.isBlank(studentId)) {
+            map.put("status", 0);
+            map.put("message", "user is null");
+            return map;
+        }
+        List<Course> courseList = courseMapper.selectCoursesByStudentId(studentId);
+        List<Map<String, Object>> selectedCourses = new ArrayList<>();
+        for (Course course : courseList) {
+            Map<String, Object> data = new HashMap<>();
+            data.put("courseName", course.getCourseName());
+            data.put("type", course.getType());
+            data.put("department", course.getDepartment());
+            data.put("courseId", course.getCourseId());
+            data.put("time", course.getTime());
+            selectedCourses.add(data);
+        }
+        map.put("data", selectedCourses);
+        return map;
+
+    }
 
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public Map<String, Object> addOptCourses(String studentId, String courseId) {

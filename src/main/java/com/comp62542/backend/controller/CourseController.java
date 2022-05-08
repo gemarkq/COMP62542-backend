@@ -49,4 +49,11 @@ public class CourseController {
         return map;
     }
 
+    @GetMapping("/selectedcourse")
+    public Map<String, Object> getSelectedCourses() {
+        User user = hostHolder.getUser();
+        Map<String, Object> map = courseService.findCourseByStudentId(user.getStudentID());
+        return map;
+    }
+
 }
