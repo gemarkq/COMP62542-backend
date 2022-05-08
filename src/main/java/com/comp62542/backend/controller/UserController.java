@@ -1,6 +1,8 @@
 package com.comp62542.backend.controller;
 
+import com.comp62542.backend.entity.User;
 import com.comp62542.backend.service.UserService;
+import com.comp62542.backend.util.HostHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +18,10 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private HostHolder hostHolder;
 
 
     @PostMapping("/user/login")
@@ -34,5 +39,13 @@ public class UserController {
         }
         return map;
     }
+
+    @PostMapping("/status/update")
+    public Map<String, Object> updateStatus(int status) {
+        User user = hostHolder.getUser();
+        Map<String, Object> map = userService.updateStatus(status, user);
+        return map;
+    }
+
 
 }

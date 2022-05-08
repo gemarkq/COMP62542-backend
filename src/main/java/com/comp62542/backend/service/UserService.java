@@ -24,6 +24,29 @@ public class UserService {
         return userMapper.selectById(id);
     }
 
+    public Map<String, Object> updateStatus(int status, User user) {
+        Map<String, Object> map = new HashMap<>();
+        if (StringUtils.isBlank(user.getStudentID())) {
+            map.put("status", 0);
+            map.put("message", "user is null");
+            return map;
+        }
+        if (status == 0) {
+            userMapper.updateStatus(1, user.getStudentID());
+        }else if(user.getStatus() == 1) {
+            map.put("status", 0);
+            map.put("message", "student status is already 1");
+            return map;
+        }else {
+            map.put("status", 0);
+            map.put("message", "student status is not 0");
+            return map;
+        }
+        map.put("status", 1);
+        map.put("message", "update status successfully");
+        return map;
+    }
+
     public Map<String, Object> login(String studentId) {
         Map<String, Object> map = new HashMap<>();
 

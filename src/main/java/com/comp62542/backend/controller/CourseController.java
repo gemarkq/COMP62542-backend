@@ -1,6 +1,7 @@
 package com.comp62542.backend.controller;
 
 
+import com.comp62542.backend.annotation.AdminRequired;
 import com.comp62542.backend.entity.User;
 import com.comp62542.backend.service.CourseService;
 import com.comp62542.backend.util.HostHolder;

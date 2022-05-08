@@ -6,6 +6,7 @@ public class User {
     private String name;
     private int status;  // 0: not registered / 1: fully registered
     private String type; // student or admin
+    private String email;
 
     public int getId() {
         return id;
@@ -47,6 +48,14 @@ public class User {
         this.type = type;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -55,6 +64,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", status=" + status +
                 ", type='" + type + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
