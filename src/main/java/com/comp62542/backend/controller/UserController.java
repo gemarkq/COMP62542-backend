@@ -44,6 +44,14 @@ public class UserController {
         return map;
     }
 
+    @GetMapping("/status")
+    public Map<String, Object> getStatus() {
+        User user = hostHolder.getUser();
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", user.getStatus());
+        return map;
+    }
+
     @PostMapping("/status/update")
     public Map<String, Object> updateStatus(int status) {
         System.out.println(status);
