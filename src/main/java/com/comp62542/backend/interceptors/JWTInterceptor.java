@@ -39,7 +39,7 @@ public class JWTInterceptor implements HandlerInterceptor {
             DecodedJWT verify =  JWTUtils.verify(token);
             String studentId = verify.getClaim("studentId").asString();
             User user = userService.findUserByStudentID(studentId);
-            System.out.println("jwtuser: " + user);
+//            System.out.println("jwtuser: " + user);
             if(user != null) {
                 hostHolder.setUsers(user);
                 return true;

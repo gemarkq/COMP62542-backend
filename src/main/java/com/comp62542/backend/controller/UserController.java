@@ -1,11 +1,14 @@
 package com.comp62542.backend.controller;
 
+import com.comp62542.backend.annotation.AdminRequired;
 import com.comp62542.backend.entity.User;
+import com.comp62542.backend.service.CourseService;
 import com.comp62542.backend.service.UserService;
 import com.comp62542.backend.util.HostHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +25,9 @@ public class UserController {
 
     @Autowired
     private HostHolder hostHolder;
+
+    @Autowired
+    private CourseService courseService;
 
 
     @PostMapping("/user/login")
@@ -44,6 +50,13 @@ public class UserController {
     public Map<String, Object> updateStatus(int status) {
         User user = hostHolder.getUser();
         Map<String, Object> map = userService.updateStatus(status, user);
+        return map;
+    }
+
+    @GetMapping("/admin/optcourses")
+    @AdminRequired
+    public Map<String, Object> getAllStudentsCourselists(String courseId, String studentId) {
+        Map<String, Object> map = courseService.adminGetallCourses(courseId, studentId);
         return map;
     }
 

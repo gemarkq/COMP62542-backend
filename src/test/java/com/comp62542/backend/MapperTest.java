@@ -96,4 +96,9 @@ public class MapperTest {
         System.out.println(newsletterMapper.insertNewsletter("10872364", "1"));
     }
 
+    @Test
+    public void testSelectbystudentId() {
+        System.out.println(courseMapper.selectByStudentId("10872364"));
+    }
+
 }

@@ -27,4 +27,5 @@ public interface UserMapper {
             "update user set status=#{status} where studentID=#{studentId}"
     })
     int updateStatus(int status, String studentId);
+
 }

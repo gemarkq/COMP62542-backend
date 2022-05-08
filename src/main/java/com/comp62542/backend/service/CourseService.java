@@ -88,5 +88,17 @@ public class CourseService {
         return map;
     }
 
+    public Map<String, Object> adminGetallCourses(String courseId, String studentId) {
+        Map<String, Object> map = new HashMap<>();
+        List<Map<String, Object>> data = null;
+        if(StringUtils.isBlank(courseId)) {
+            data = courseMapper.selectByStudentId(studentId);
+        } else if(StringUtils.isBlank(studentId)) {
+            data = courseMapper.selectByCourseId(courseId);
+        }
+        map.put("data", data);
+        return map;
+    }
+
 
 }

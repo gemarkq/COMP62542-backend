@@ -5,6 +5,7 @@ import com.comp62542.backend.entity.Course;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CourseMapper {
@@ -30,6 +31,17 @@ public interface CourseMapper {
     @ResultType(Course.class)
     List<Course> selectCoursesByStudentId(@Param("studentId")String studentId);
 
+    @Select({
+            "select courseId, studentID from course_enrollment where studentId=#{studentId}"
+    })
+    @ResultType(java.util.HashMap.class)
+    List<Map<String, Object>> selectByStudentId(String studentId);
+
+    @Select({
+            "select courseId, studentID from course_enrollment where courseId=#{courseId}"
+    })
+    @ResultType(java.util.HashMap.class)
+    List<Map<String, Object>> selectByCourseId(String courseId);
 
     @Insert({
             "insert into course_enrollment(courseId, studentId) values(#{courseId}, #{studentId}) "
