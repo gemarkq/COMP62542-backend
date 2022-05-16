@@ -2,6 +2,8 @@ package com.comp62542.backend.service;
 
 import com.comp62542.backend.dao.NewsletterMapper;
 import com.comp62542.backend.entity.Newsletter;
+import com.comp62542.backend.patterns.observer.SubjectNewsletter;
+import com.comp62542.backend.patterns.observer.SubscriberObserver;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,6 +59,9 @@ public class NewsletterService {
         newsletterMapper.insertNewsletter(studentId, newsletterId);
         map.put("status", 1);
         map.put("message", "Subscribe newsletter successfully");
+        SubjectNewsletter subjectNewsletter = new SubjectNewsletter();
+        new SubscriberObserver(subjectNewsletter);
+        System.out.println("Subscribe successfully");
         return map;
 
     }

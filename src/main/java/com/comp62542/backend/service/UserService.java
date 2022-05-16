@@ -24,6 +24,10 @@ public class UserService {
         return userMapper.selectById(id);
     }
 
+    public void updateToFullyRegistered(int status, User user) {
+        userMapper.updateStatus(2, user.getStudentID());
+    }
+
     public Map<String, Object> updateStatus(int status, User user) {
         Map<String, Object> map = new HashMap<>();
         if (StringUtils.isBlank(user.getStudentID())) {

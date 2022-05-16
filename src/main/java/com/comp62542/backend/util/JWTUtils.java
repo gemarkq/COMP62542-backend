@@ -4,6 +4,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.comp62542.backend.patterns.Strategy.HMAC256;
+import com.comp62542.backend.patterns.Strategy.StrategyContext;
 
 import java.util.Calendar;
 import java.util.Map;
@@ -20,11 +22,13 @@ public class JWTUtils {
 
         JWTCreator.Builder builder = JWT.create();
 
+        StrategyContext strategyContext = new StrategyContext(new HMAC256());
+
         map.forEach((k, v) -> {
             builder.withClaim(k, v);
         });
         String token = builder.withExpiresAt(instance.getTime())
-                .sign(Algorithm.HMAC256(SIGNATURE));
+                .sign(strategyContext.selectChoosenAlgorithm(SIGNATURE));
         return token;
     }
 

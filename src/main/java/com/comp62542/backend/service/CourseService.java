@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CourseService {
+public class CourseService implements CourseDesign {
 
     @Autowired
     private CourseMapper courseMapper;
@@ -60,6 +60,7 @@ public class CourseService {
 
     }
 
+    @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public Map<String, Object> addOptCourses(String studentId, String courseId) {
         Map<String, Object> map = new HashMap<>();
@@ -86,6 +87,7 @@ public class CourseService {
         return map;
     }
 
+    @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public Map<String, Object> deleteOptCourse(String studentId, String courseId) {
         Map<String, Object> map = new HashMap<>();

@@ -2,9 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>HTML 邮件模板测试</title>
+    <title>NewsLetter</title>
 </head>
 <body>
-    <p>Welcome, <span style="color:red;" th:text="${username}"></span></p>
+    <p>
+        <b th:text="${email}">xxx@xxx.com</b>, Hello!
+    </p>
+    <p>This is your news letter, <span style="color:red;" th:text="${content}"></span></p>
 </body>
 </html>

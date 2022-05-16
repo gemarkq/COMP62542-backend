@@ -115,4 +115,14 @@ public class MapperTest {
 
     }
 
+    @Test
+    public void testSelectNewsletterbysid() {
+        System.out.println(newsletterMapper.selectNewsletterByStudentId("10872364"));
+    }
+
+    @Test
+    public void testSelectallstudents() {
+        System.out.println(userMapper.selectAllStudents("student"));
+    }
+
 }
